@@ -5,7 +5,7 @@ from serpapi import GoogleSearch
 
 # --- Config ---
 nlp = spacy.load("en_core_web_sm")
-SERPAPI_KEY = "a05691cb51b67ab1c55fe6731e37e925cb1248cda6fd0b01727033168cacd257"
+SERPAPI_KEY = st.secrets["SERPAPI_KEY"]
 
 # --- Known Skills ---
 KNOWN_SKILLS = ["python", "sql", "pandas", "tensorflow", "ml", "ai", "automation", "django"]
