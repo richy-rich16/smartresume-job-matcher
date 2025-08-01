@@ -20,12 +20,19 @@ def extract_skills(text):
     return list({skill for skill in KNOWN_SKILLS if skill in tokens})
 
 def search_jobs(skills, location="Hyderabad"):
-    params = {
-        "engine": "google_jobs",
-        "q": f"{', '.join(skills)} jobs in {location}",
-        "hl": "en",
-        "gl": "in",
-        "api_key": SERPAPI_KEY
+    try:
+        params = {
+            "engine": "google_jobs",
+            "q": f"{', '.join(skills)} jobs in {location}",
+            "hl": "en",
+            "gl": "in",
+            "api_key": SERPAPI_KEY
+        }
+        return GoogleSearch(params).get_dict().get("jobs_results", [])[:5]
+    except Exception as e:
+        st.error(f"❌ Job search failed: {e}")
+        return []
+
     }
     return GoogleSearch(params).get_dict().get("jobs_results", [])[:5]
 
